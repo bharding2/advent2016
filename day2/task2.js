@@ -87,7 +87,7 @@ var keypad = {
 };
 
 function getKey(dirs) {
-  dirArr = dirs.split('');
+  var dirArr = dirs.split('');
 
   dirArr.forEach((ele) => {
     if (keypad[currentKey][ele]) currentKey = keypad[currentKey][ele];

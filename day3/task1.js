@@ -4,20 +4,21 @@ var inputTxt = fs.readFileSync('./input.txt').toString().trim().split('\n');
 
 var input = inputTxt.map((ele) => {
   var cleaned = ele.replace(/\s+/, 'x').replace(/\s+/, 'x').split('x');
+  var numArray = cleaned.map((ele) => {
+    return +ele;
+  });
 
-  return cleaned;
+  return numArray;
 });
 
-var numTriangles = 0;
 var allTriangles = [];
 
 function isTriangle(triangle) {
-  triangle.sort();
+  triangle.sort((a, b) => {
+    return a - b;
+  });
 
-  if (+triangle[2] + +triangle[1] > +triangle[0] && +triangle[0] + +triangle[1] > +triangle[2] && +triangle[2] + +triangle[0] > +triangle[1]) {
-    numTriangles++;
-    return triangle;
-  }
+  if (triangle[0] + triangle[1] > triangle[2]) return triangle;
 }
 
 allTriangles = input.filter((ele) => {

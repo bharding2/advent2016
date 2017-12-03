@@ -14,9 +14,8 @@ var grid = {
   }
 };
 
-// our function to get the value of a cell.  It walks down the grid
-// from the provided cell number, checks all adjacent cells to see
-// if they contain a value then sums them
+// our function to get the value of a cell, it checks all adjacent
+// cells to see if they contain a value then sums them
 function getValue(currentCell) {
   var newValue = 0;
 

@@ -10,20 +10,20 @@ var corner3 = corner2 - (boxLevel - 1);
 var corner4 = corner3 - (boxLevel - 1);
 
 var midPoint = 0;
-var stepsOut = 0;
+var stepsSidways = 0;
 
 if (targetCell <= corner4) {
   midPoint = corner4 - Math.floor(boxLevel / 2);
-  stepsOut = Math.abs(midPoint - targetCell);
+  stepsSidways = Math.abs(midPoint - targetCell);
 } else if (targetCell <= corner3) {
   midPoint = corner3 - Math.floor(boxLevel / 2);
-  stepsOut = Math.abs(midPoint - targetCell);
+  stepsSidways = Math.abs(midPoint - targetCell);
 } else if (targetCell <= corner2) {
   midPoint = corner2 - Math.floor(boxLevel / 2);
-  stepsOut = Math.abs(midPoint - targetCell);
+  stepsSidways = Math.abs(midPoint - targetCell);
 } else {
   midPoint = corner1 - Math.floor(boxLevel / 2);
-  stepsOut = Math.abs(midPoint - targetCell);
+  stepsSidways = Math.abs(midPoint - targetCell);
 }
 
-console.log(stepsOut + stepsIn);
+console.log(stepsSidways + stepsIn);

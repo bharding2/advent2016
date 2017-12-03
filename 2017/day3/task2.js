@@ -21,7 +21,7 @@ function getValue(currentCell) {
   var newValue = 0;
 
   // here we are checking all adjacent squares, aka all cells that
-  // are zero one one steps away on both the x and y axis
+  // are zero or one steps away on both the x and y axis
   for (var i = 1; i < currentCell; i++) {
     var xDiff = Math.abs(grid[currentCell].x - grid[i].x);
     var yDiff = Math.abs(grid[currentCell].y - grid[i].y);
@@ -35,18 +35,18 @@ function getValue(currentCell) {
 };
 
 // we are creating a new outer level with a certain number of
-// sides, this logic is similar to the task 1 solution
-function createLevel(sides) {
+// cells per side, this logic is similar to the task 1 solution
+function createLevel(sideSize) {
   // initializing current cell at highest cell number on level
-  var currentCell = sides ** 2
+  var currentCell = sideSize ** 2
 
   var corner1 = currentCell;
-  var corner2 = corner1 - (sides - 1);
-  var corner3 = corner2 - (sides - 1);
-  var corner4 = corner3 - (sides - 1);
+  var corner2 = corner1 - (sideSize - 1);
+  var corner3 = corner2 - (sideSize - 1);
+  var corner4 = corner3 - (sideSize - 1);
 
   // lowest cell on level
-  var lastCell = corner4 - (sides - 2);
+  var lastCell = corner4 - (sideSize - 2);
 
   // building the cells on the level
   while (currentCell >= lastCell) {
@@ -57,24 +57,24 @@ function createLevel(sides) {
     // checking which side of the box it is on, then find
     // the x and y coordinates with center cell being 0,0
     if (currentCell <= corner4) {
-      midPoint = corner4 - Math.floor(sides / 2);
+      midPoint = corner4 - Math.floor(sideSize / 2);
 
-      cellX = Math.floor(sides / 2);
+      cellX = Math.floor(sideSize / 2);
       cellY = currentCell - midPoint;
     } else if (currentCell <= corner3) {
-      midPoint = corner3 - Math.floor(sides / 2);
+      midPoint = corner3 - Math.floor(sideSize / 2);
 
-      cellY = Math.floor(sides / 2);
+      cellY = Math.floor(sideSize / 2);
       cellX = midPoint - currentCell;
     } else if (currentCell <= corner2) {
-      midPoint = corner2 - Math.floor(sides / 2);
+      midPoint = corner2 - Math.floor(sideSize / 2);
 
-      cellX = -Math.floor(sides / 2);
+      cellX = -Math.floor(sideSize / 2);
       cellY = midPoint - currentCell;
     } else {
-      midPoint = corner1 - Math.floor(sides / 2);
+      midPoint = corner1 - Math.floor(sideSize / 2);
 
-      cellY = -Math.floor(sides / 2);
+      cellY = -Math.floor(sideSize / 2);
       cellX = currentCell - midPoint;
     }
 
@@ -89,17 +89,17 @@ function createLevel(sides) {
 
 // we initialized the grid with the center cell, so we start
 // with the next level, which has 3 sides
-var sides = 3;
+var sideSize = 3;
 var bigCell = 0;
 var bigValue = 0;
 
 // while the largest value on the outer level is less than the
 // target value, we will create a new level
 while (bigValue < inputValue) {
-  bigCell = (sides) ** 2;
+  bigCell = (sideSize) ** 2;
 
   // this creates the cells on that level
-  createLevel(sides);
+  createLevel(sideSize);
 
   // this next super ugly bit walks through all of the cells and
   // updates the values, starting with cell 2 because we initialized
@@ -114,7 +114,7 @@ while (bigValue < inputValue) {
   }
 
   bigValue = grid[bigCell].value;
-  sides += 2;
+  sideSize += 2;
 }
 
 // this other ugly bit is just finding the target cell on our grid

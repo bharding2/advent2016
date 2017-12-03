@@ -88,7 +88,7 @@ function createLevel(sideSize) {
 }
 
 // we initialized the grid with the center cell, so we start
-// with the next level, which has 3 sides
+// with the next level, which has 3 cells per side
 var sideSize = 3;
 var bigCell = 0;
 var bigValue = 0;

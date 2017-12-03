@@ -103,7 +103,10 @@ while (bigValue < inputValue) {
 
   // this next super ugly bit walks through all of the cells and
   // updates the values, starting with cell 2 because we initialized
-  // the grid with cell 1
+  // the grid with cell 1.  I was pissed off at this point, so I am
+  // updating all of the values on the grid each time we get to a
+  // new level.  There really should be logic to only update the
+  // vaules on the cells on the new level
   var gridKeys = Object.keys(grid);
 
   for (var i = 2; i < gridKeys.length + 1; i++) {

@@ -15,7 +15,8 @@ var grid = {
 };
 
 // our function to get the value of a cell, it checks all adjacent
-// cells to see if they contain a value then sums them
+// cells to see if they contain a value then sums them.  it needs
+// to be used when the current cell is the largest cell in the grid
 function getValue(currentCell) {
   var newValue = 0;
 

@@ -14,19 +14,24 @@ input.forEach((line) => {
   var operation = line.split(' if ')[0];
   var condition = line.split(' if ')[1];
 
-  var operationSplit = operation.split(' ');
-  var conditionSplit = condition.split(' ');
+  operation = operation.replace('inc', '+=');
+  operation = operation.replace('dec', '-=')
 
-  if (operationSplit[1] === 'inc') {
-    operationSplit[1] = '+=';
-  } else {
-    operationSplit[1] = '-=';
-  }
+  var operationRegister = operation.split(' ')[0];
+  var conditionRegister = condition.split(' ')[0];
 
-  operation = 'registers["' + operationSplit[0] + '"] ' + operationSplit[1] + ' ' + operationSplit[2];
-  condition = 'registers["' + conditionSplit[0] + '"] ' + conditionSplit[1] + ' ' + conditionSplit[2];
+  operation = operation.replace(operationRegister, 'registers["' + operationRegister + '"]')
+  condition = condition.replace(conditionRegister, 'registers["' + conditionRegister + '"]')
 
   if (eval(condition)) eval(operation);
 });
 
-console.log(registers);
+var maxRegister = 0;
+
+allRegisters = Object.keys(registers);
+
+allRegisters.forEach((register) => {
+  if (registers[register] > maxRegister) maxRegister = registers[register];
+});
+
+console.log(maxRegister);

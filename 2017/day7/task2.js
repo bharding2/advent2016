@@ -40,8 +40,8 @@ allDiscs.forEach((disc) => {
 });
 
 function calcDiscBranchWeight(disc) {
-  // var totalWeight = +discs[disc].weight;
   var totalWeight = 0;
+
   if (discs[disc].children) {
     discs[disc].children.forEach((child) => {
       totalWeight += +discs[child].weight;
